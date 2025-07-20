@@ -5,6 +5,7 @@ import { streamText } from "ai";
 export const maxDuration = 30;
 
 interface CardData {
+  id: string;
   name: string;
   quantity: number;
 }
@@ -17,10 +18,12 @@ export async function POST(req: Request) {
     let deckContext = "";
     if (selectedCards && selectedCards.length > 0) {
       const cardList = selectedCards.map((card: CardData) => 
-        `${card.name} (${card.quantity}x)`
-      ).join(', ');
+        `${card.name} (ID: ${card.id}, Quantity: ${card.quantity})`
+      ).join('\n');
+      
       const totalCards = selectedCards.reduce((sum: number, card: CardData) => sum + card.quantity, 0);
-      deckContext = `\n\nCURRENT DECK INFORMATION:\nThe user's current deck contains ${totalCards}/20 cards:\n${cardList}\n\nWhen giving advice, consider these specific cards and suggest complementary cards or strategies that would work well with this deck composition in mind.`;
+      
+      deckContext = `\n\nCURRENT DECK INFORMATION:\nThe user's current deck contains ${totalCards}/20 cards:\n\n${cardList}\n\nIMPORTANT: When analyzing this deck or making recommendations, you should consult the TCGdex API (https://api.tcgdex.net/v2/en/cards/{card_id}) to get detailed information about each card including its type, HP, abilities, attacks, and other properties. Use the card IDs provided above to fetch complete card data.`;
     }
 
     const systemPrompt = `You are Professor Oak, the renowned Pokémon researcher and TCG Mobile deck strategist. You speak in your characteristic warm, enthusiastic, and slightly eccentric style from the Pokémon games and anime.

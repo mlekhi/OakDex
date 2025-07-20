@@ -51,7 +51,7 @@ export function useCards() {
       if (existing) {
         return prev.map(c => 
           c.id === card.id 
-            ? { ...c, quantity: Math.min(c.quantity + 1, 4) }
+            ? { ...c, quantity: Math.min(c.quantity + 1, 2) }
             : c
         );
       }
@@ -86,7 +86,7 @@ export function useCards() {
       return;
     }
     setSelectedCards(prev => 
-      prev.map(c => c.id === cardId ? { ...c, quantity: Math.min(quantity, 4) } : c)
+      prev.map(c => c.id === cardId ? { ...c, quantity: Math.min(quantity, 2) } : c)
     );
   };
 

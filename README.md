@@ -1,4 +1,4 @@
-# Professor Oak
+# OakDex
 
 A Pokémon TCG deck strategist specific to the mobile game.
 

@@ -15,9 +15,16 @@ export default function LandingPage() {
       {/* Hero Section */}
       <div className="flex-1 flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            OakDex
-          </h1>
+          <div className="flex items-center justify-center mb-6">
+            <img 
+              src="/oak-sprite.png" 
+              alt="Professor Oak" 
+              className="w-16 h-16 rounded-full mr-4"
+            />
+            <h1 className="text-5xl md:text-7xl font-bold">
+              OakDex
+            </h1>
+          </div>
           <p className="text-xl md:text-2xl mb-12 text-gray-600">
             Your Pokémon TCG Pocket Mentor
           </p>

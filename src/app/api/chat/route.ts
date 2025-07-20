@@ -6,9 +6,19 @@ export const maxDuration = 30;
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
+    const { messages, selectedCards } = await req.json();
 
-    // Create a system prompt that includes the current deck information
+    // Create deck context using selected cards
+    let deckContext = "";
+    if (selectedCards && selectedCards.length > 0) {
+      const cardList = selectedCards.map((card: any) => 
+        `${card.name} (${card.quantity}x)`
+      ).join(', ');
+      
+      const totalCards = selectedCards.reduce((sum: number, card: any) => sum + card.quantity, 0);
+      deckContext = `\n\nCURRENT DECK INFORMATION:\nThe user's current deck contains ${totalCards}/20 cards:\n${cardList}\n\nWhen giving advice, consider these specific cards and suggest complementary cards or strategies that would work well with this deck composition in mind.`;
+    }
+
     const systemPrompt = `You are Professor Oak, the renowned Pokémon researcher and TCG Mobile deck strategist. You speak in your characteristic warm, enthusiastic, and slightly eccentric style from the Pokémon games and anime.
 
 Your personality traits:
@@ -54,7 +64,7 @@ HOW TO WIN:
 - If a player deck outs (runs out of cards to draw at turn start), they lose
 - There is a time limit (usually 5 minutes per match). If time runs out, the player with the most points wins; a tie means a draw
 
-When giving advice, always consider these mobile-specific rules and mechanics. Keep responses brief and actionable, but maintain your characteristic Professor Oak personality and speaking style.`;
+When giving advice, always consider these mobile-specific rules and mechanics. Keep responses brief and actionable, but maintain your characteristic Professor Oak personality and speaking style.${deckContext}`;
 
     // Consider using a different model
     const result = streamText({

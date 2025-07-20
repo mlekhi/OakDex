@@ -2,8 +2,10 @@
 
 import { RefreshCw, Loader2 } from "lucide-react";
 import Image from "next/image";
+import { useState, useMemo } from "react";
 import { Card } from "@/types/cards";
 import { getCardImageUrl } from "@/utils/cardUtils";
+import CardSearch from "./CardSearch";
 
 interface AvailableCardsProps {
   availableCards: Card[];
@@ -22,11 +24,32 @@ export default function AvailableCards({
   onLoadCards,
   onAddCard
 }: AvailableCardsProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredCards = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return availableCards;
+    }
+    
+    const query = searchQuery.toLowerCase();
+    return availableCards.filter(card => 
+      card.name.toLowerCase().includes(query)
+    );
+  }, [availableCards, searchQuery]);
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
   return (
     <div className="lg:col-span-2">
       <div className="mb-4">
         <h3 className="text-lg font-semibold mb-2">Available Cards</h3>
+        
         <div className="flex gap-2 mb-2">
+          <div className="flex-1">
+            <CardSearch onSearch={handleSearch} placeholder="Search for a card..." />
+          </div>
           <select
             value={selectedSet}
             onChange={(e) => onSetChange(e.target.value)}
@@ -55,7 +78,11 @@ export default function AvailableCards({
         </div>
         {availableCards.length > 0 && !isLoadingCards && (
           <p className="text-sm text-muted-foreground">
-            Loaded {availableCards.length} cards from {selectedSet}
+            {searchQuery ? (
+              `Found ${filteredCards.length} of ${availableCards.length} cards matching &quot;${searchQuery}&quot;`
+            ) : (
+              `Loaded ${availableCards.length} cards from ${selectedSet}`
+            )}
           </p>
         )}
       </div>
@@ -68,12 +95,16 @@ export default function AvailableCards({
               <p className="text-muted-foreground">Loading cards...</p>
             </div>
           </div>
-        ) : availableCards.length === 0 ? (
+        ) : filteredCards.length === 0 ? (
           <div className="col-span-full text-center py-8 text-muted-foreground">
-            <p>No cards available. Try loading a different set.</p>
+            {searchQuery ? (
+              <p>No cards found matching &quot;{searchQuery}&quot;</p>
+            ) : (
+              <p>No cards available. Try loading a different set.</p>
+            )}
           </div>
         ) : (
-          availableCards.map((card) => (
+          filteredCards.map((card) => (
             <div
               key={card.id}
               draggable

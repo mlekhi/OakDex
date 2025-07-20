@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Github } from "lucide-react";
 
@@ -12,10 +13,11 @@ export default function Header() {
     <nav className="px-6 py-4">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-          <img 
+          <Image 
             src="/oak-sprite.png" 
             alt="Professor Oak" 
-            className="w-8 h-8 rounded-full"
+            width={32} 
+            height={32}
           />
           <span className="text-xl font-bold">OakDex</span>
         </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -16,9 +17,11 @@ export default function LandingPage() {
       <div className="flex-1 flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="flex items-center justify-center mb-6">
-            <img 
+            <Image 
               src="/oak-sprite.png" 
               alt="Professor Oak" 
+              width={64}
+              height={64}
               className="w-16 h-16 rounded-full mr-4"
             />
             <h1 className="text-5xl md:text-7xl font-bold">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
+import Image from "next/image";
 import { DeckCard } from "@/types/cards";
 import { CardRecommendation } from "@/types/cardRecommendations";
 import { Send } from "lucide-react";
@@ -106,10 +107,11 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
                 <div className="font-semibold">You</div>
               ) : (
                 <>
-                  <img 
+                  <Image 
                     src="/oak-sprite.png" 
                     alt="Professor Oak" 
-                    className="w-8 h-8 rounded-full"
+                    width={32}
+                    height={32}
                   />
                   <div className="font-semibold">Professor Oak</div>
                 </>

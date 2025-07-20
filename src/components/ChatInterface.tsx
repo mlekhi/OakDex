@@ -101,8 +101,19 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
 
         {messages.map((message) => (
           <div key={message.id} className="whitespace-pre-wrap mb-4 p-3 rounded-lg shadow-lg bg-white">
-            <div className="font-semibold mb-1">
-              {message.role === "user" ? "You" : "Professor Oak"}
+            <div className="flex items-center gap-3 mb-1">
+              {message.role === "user" ? (
+                <div className="font-semibold">You</div>
+              ) : (
+                <>
+                  <img 
+                    src="/oak-sprite.png" 
+                    alt="Professor Oak" 
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <div className="font-semibold">Professor Oak</div>
+                </>
+              )}
             </div>
             {message.parts.map((part, i) => {
               switch (part.type) {

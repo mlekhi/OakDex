@@ -6,15 +6,7 @@ export default function Footer() {
           <span className="text-xl font-bold">OakDex</span>
         </div>
         <div className="flex justify-center space-x-6 text-sm">
-          <span>© 2025</span>
-          <span>•</span>
-          <a href="/privacy" className="hover:underline">
-            Privacy Policy
-          </a>
-          <span>•</span>
-          <a href="/terms" className="hover:underline">
-            Terms of Service
-          </a>
+          <span>© 2025 OakDex</span>
           <span>•</span>
           <a 
             href="https://github.com/mlekhi/OakDex" 

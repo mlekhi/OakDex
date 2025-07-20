@@ -29,14 +29,14 @@ export default function DeckBuilder({
   };
 
   return (
-    <div className="lg:col-span-1">
+    <div className="lg:col-span-1 flex flex-col h-full">
       <h3 className="text-lg font-semibold mb-4">Your Deck</h3>
       
       <div
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
-        className={`min-h-64 p-4 rounded-lg transition-all duration-300 shadow-lg ${
+        className={`flex-1 p-4 rounded-lg transition-all duration-300 shadow-lg ${
           dragOver 
             ? 'shadow-blue-200 bg-blue-50 dark:bg-blue-950' 
             : 'shadow-gray-200 bg-white'

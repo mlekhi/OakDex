@@ -88,6 +88,7 @@ async function fetchCardDetails(cardId: string, lang: string = 'en'): Promise<Ca
     return {
       id: data.id,
       name: data.name,
+      image: data.image,
       types: data.types,
       hp: data.hp,
       description: data.description,
@@ -155,7 +156,7 @@ async function fetchSetCards(setId: string, lang: string = 'en'): Promise<CardDa
 
 async function main() {
   const args = process.argv.slice(2);
-  const setIds = args.length > 0 ? args : ['A1', 'A2', 'A3'];
+  const setIds = args.length > 0 ? args : ['A1', 'A2', 'A3', 'A1a', 'A2a', 'A2b', 'A3a', 'A3b'];
   
   // check environment variables
   if (!process.env.PINECONE_API_KEY || !process.env.OPENAI_API_KEY) {

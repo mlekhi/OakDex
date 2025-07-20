@@ -37,6 +37,8 @@ export default function AvailableCards({
             <option value="A1a">Mythical Island</option>
             <option value="A2a">Triumphant Light</option>
             <option value="A2b">Shining Revelry</option>
+            <option value="A3a">Extradimensional Crisis</option>
+            <option value="A3b">Eevee Grove</option>
           </select>
           <button
             onClick={onLoadCards}

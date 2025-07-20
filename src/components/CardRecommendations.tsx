@@ -45,7 +45,7 @@ export default function CardRecommendations({
         </h3>
         <p className="text-blue-700 text-sm mb-2">{reason}</p>
         {strategy && (
-          <p className="text-blue-600 text-sm italic">💡 {strategy}</p>
+          <p className="text-blue-600 text-sm italic">💡 {strategy.replace(/'/g, '&apos;')}</p>
         )}
       </div>
       

@@ -1,0 +1,842 @@
+{
+  "Sylveon ex": {
+    "count": 1927,
+    "share": 21.82,
+    "score": "5188 - 4874 - 158",
+    "winPercentage": 50.76,
+    "cards": {}
+  },
+  "Silvally": {
+    "count": 940,
+    "share": 10.64,
+    "score": "2635 - 2366 - 105",
+    "winPercentage": 51.61,
+    "cards": {}
+  },
+  "Charizard ex": {
+    "count": 745,
+    "share": 8.44,
+    "score": "1982 - 1916 - 61",
+    "winPercentage": 50.06,
+    "cards": {}
+  },
+  "Giratina ex": {
+    "count": 731,
+    "share": 8.28,
+    "score": "2039 - 1781 - 71",
+    "winPercentage": 52.40,
+    "cards": {}
+  },
+  "Flareon ex": {
+    "count": 547,
+    "share": 6.19,
+    "score": "1475 - 1382 - 37",
+    "winPercentage": 50.97,
+    "cards": {}
+  },
+  "Buzzwole ex": {
+    "count": 490,
+    "share": 5.55,
+    "score": "1387 - 1255 - 55",
+    "winPercentage": 51.43,
+    "cards": {}
+  },
+  "Solgaleo ex": {
+    "count": 426,
+    "share": 4.82,
+    "score": "940 - 1074 - 28",
+    "winPercentage": 46.03,
+    "cards": {}
+  },
+  "Guzzlord ex": {
+    "count": 391,
+    "share": 4.43,
+    "score": "996 - 945 - 53",
+    "winPercentage": 49.95,
+    "cards": {}
+  },
+  "Incineroar ex": {
+    "count": 288,
+    "share": 3.26,
+    "score": "598 - 740 - 9",
+    "winPercentage": 44.39,
+    "cards": {}
+  },
+  "Garchomp ex": {
+    "count": 246,
+    "share": 2.79,
+    "score": "652 - 603 - 22",
+    "winPercentage": 51.06,
+    "cards": {}
+  },
+  "Greninja": {
+    "count": 222,
+    "share": 2.51,
+    "score": "500 - 548 - 34",
+    "winPercentage": 46.21,
+    "cards": {}
+  },
+  "Tapu Koko ex": {
+    "count": 213,
+    "share": 2.41,
+    "score": "586 - 536 - 12",
+    "winPercentage": 51.68,
+    "cards": {}
+  },
+  "Primarina ex": {
+    "count": 147,
+    "share": 1.66,
+    "score": "258 - 365 - 6",
+    "winPercentage": 41.02,
+    "cards": {}
+  },
+  "Magnezone": {
+    "count": 145,
+    "share": 1.64,
+    "score": "373 - 361 - 14",
+    "winPercentage": 49.87,
+    "cards": {}
+  },
+  "Slurpuff": {
+    "count": 137,
+    "share": 1.55,
+    "score": "230 - 325 - 10",
+    "winPercentage": 40.71,
+    "cards": {}
+  },
+  "Arceus ex": {
+    "count": 130,
+    "share": 1.47,
+    "score": "377 - 333 - 8",
+    "winPercentage": 52.51,
+    "cards": {}
+  },
+  "Dragonite ex": {
+    "count": 95,
+    "share": 1.08,
+    "score": "129 - 235 - 5",
+    "winPercentage": 34.96,
+    "cards": {}
+  },
+  "Luxray": {
+    "count": 73,
+    "share": 0.83,
+    "score": "205 - 190 - 9",
+    "winPercentage": 50.74,
+    "cards": {}
+  },
+  "Decidueye ex": {
+    "count": 54,
+    "share": 0.61,
+    "score": "111 - 148 - 1",
+    "winPercentage": 42.69,
+    "cards": {}
+  },
+  "Leafeon ex": {
+    "count": 53,
+    "share": 0.60,
+    "score": "114 - 139 - 7",
+    "winPercentage": 43.85,
+    "cards": {}
+  },
+  "Gallade ex": {
+    "count": 52,
+    "share": 0.59,
+    "score": "117 - 134 - 6",
+    "winPercentage": 45.53,
+    "cards": {}
+  },
+  "Mewtwo ex Gardevoir": {
+    "count": 51,
+    "share": 0.58,
+    "score": "84 - 127 - 1",
+    "winPercentage": 39.62,
+    "cards": {}
+  },
+  "Snorlax ex": {
+    "count": 48,
+    "share": 0.54,
+    "score": "79 - 121 - 0",
+    "winPercentage": 39.50,
+    "cards": {}
+  },
+  "Darkrai ex": {
+    "count": 45,
+    "share": 0.51,
+    "score": "88 - 108 - 5",
+    "winPercentage": 43.78,
+    "cards": {}
+  },
+  "Eevee ex": {
+    "count": 39,
+    "share": 0.44,
+    "score": "60 - 89 - 2",
+    "winPercentage": 39.74,
+    "cards": {}
+  },
+  "Gengar ex": {
+    "count": 36,
+    "share": 0.41,
+    "score": "51 - 92 - 1",
+    "winPercentage": 35.42,
+    "cards": {}
+  },
+  "Naganadel": {
+    "count": 33,
+    "share": 0.37,
+    "score": "74 - 94 - 3",
+    "winPercentage": 43.27,
+    "cards": {}
+  },
+  "Lucario": {
+    "count": 27,
+    "share": 0.31,
+    "score": "93 - 79 - 2",
+    "winPercentage": 53.45,
+    "cards": {}
+  },
+  "Dialga ex": {
+    "count": 24,
+    "share": 0.27,
+    "score": "35 - 62 - 0",
+    "winPercentage": 36.08,
+    "cards": {}
+  },
+  "Meowscarada": {
+    "count": 23,
+    "share": 0.26,
+    "score": "40 - 51 - 0",
+    "winPercentage": 43.96,
+    "cards": {}
+  },
+  "Beedrill ex": {
+    "count": 20,
+    "share": 0.23,
+    "score": "31 - 42 - 3",
+    "winPercentage": 40.79,
+    "cards": {}
+  },
+  "Lunala ex": {
+    "count": 18,
+    "share": 0.20,
+    "score": "27 - 50 - 0",
+    "winPercentage": 35.06,
+    "cards": {}
+  },
+  "Glaceon ex": {
+    "count": 18,
+    "share": 0.20,
+    "score": "23 - 38 - 0",
+    "winPercentage": 37.70,
+    "cards": {}
+  },
+  "Gyarados ex": {
+    "count": 17,
+    "share": 0.19,
+    "score": "19 - 33 - 0",
+    "winPercentage": 36.54,
+    "cards": {}
+  },
+  "Alolan Raichu ex": {
+    "count": 16,
+    "share": 0.18,
+    "score": "13 - 40 - 0",
+    "winPercentage": 24.53,
+    "cards": {}
+  },
+  "Stoutland": {
+    "count": 15,
+    "share": 0.17,
+    "score": "30 - 36 - 1",
+    "winPercentage": 44.78,
+    "cards": {}
+  },
+  "Crabominable ex": {
+    "count": 14,
+    "share": 0.16,
+    "score": "47 - 47 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Decidueye": {
+    "count": 13,
+    "share": 0.15,
+    "score": "43 - 34 - 1",
+    "winPercentage": 55.13,
+    "cards": {}
+  },
+  "Infernape ex": {
+    "count": 13,
+    "share": 0.15,
+    "score": "17 - 33 - 0",
+    "winPercentage": 34.00,
+    "cards": {}
+  },
+  "Vanillish": {
+    "count": 13,
+    "share": 0.15,
+    "score": "13 - 30 - 1",
+    "winPercentage": 29.55,
+    "cards": {}
+  },
+  "Galvantula": {
+    "count": 12,
+    "share": 0.14,
+    "score": "19 - 34 - 1",
+    "winPercentage": 35.19,
+    "cards": {}
+  },
+  "Tsareena": {
+    "count": 12,
+    "share": 0.14,
+    "score": "20 - 30 - 0",
+    "winPercentage": 40.00,
+    "cards": {}
+  },
+  "Celebi ex": {
+    "count": 11,
+    "share": 0.12,
+    "score": "8 - 28 - 0",
+    "winPercentage": 22.22,
+    "cards": {}
+  },
+  "Articuno ex": {
+    "count": 11,
+    "share": 0.12,
+    "score": "11 - 25 - 0",
+    "winPercentage": 30.56,
+    "cards": {}
+  },
+  "Jolteon": {
+    "count": 11,
+    "share": 0.12,
+    "score": "29 - 29 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Paldean Clodsire ex": {
+    "count": 11,
+    "share": 0.12,
+    "score": "18 - 29 - 0",
+    "winPercentage": 38.30,
+    "cards": {}
+  },
+  "Palkia ex": {
+    "count": 11,
+    "share": 0.12,
+    "score": "7 - 23 - 0",
+    "winPercentage": 23.33,
+    "cards": {}
+  },
+  "Blastoise ex": {
+    "count": 10,
+    "share": 0.11,
+    "score": "12 - 27 - 0",
+    "winPercentage": 30.77,
+    "cards": {}
+  },
+  "Aerodactyl ex": {
+    "count": 9,
+    "share": 0.10,
+    "score": "25 - 21 - 0",
+    "winPercentage": 54.35,
+    "cards": {}
+  },
+  "Starmie ex": {
+    "count": 8,
+    "share": 0.09,
+    "score": "17 - 17 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Pikachu ex": {
+    "count": 7,
+    "share": 0.08,
+    "score": "22 - 18 - 2",
+    "winPercentage": 52.38,
+    "cards": {}
+  },
+  "Exeggutor ex": {
+    "count": 7,
+    "share": 0.08,
+    "score": "8 - 16 - 0",
+    "winPercentage": 33.33,
+    "cards": {}
+  },
+  "Weavile ex": {
+    "count": 6,
+    "share": 0.07,
+    "score": "13 - 14 - 1",
+    "winPercentage": 46.43,
+    "cards": {}
+  },
+  "Togekiss": {
+    "count": 6,
+    "share": 0.07,
+    "score": "6 - 14 - 0",
+    "winPercentage": 30.00,
+    "cards": {}
+  },
+  "Lycanroc ex": {
+    "count": 6,
+    "share": 0.07,
+    "score": "13 - 17 - 1",
+    "winPercentage": 41.94,
+    "cards": {}
+  },
+  "Wugtrio ex": {
+    "count": 6,
+    "share": 0.07,
+    "score": "15 - 15 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Zapdos ex": {
+    "count": 5,
+    "share": 0.06,
+    "score": "4 - 9 - 0",
+    "winPercentage": 30.77,
+    "cards": {}
+  },
+  "Lycanroc": {
+    "count": 4,
+    "share": 0.05,
+    "score": "8 - 10 - 0",
+    "winPercentage": 44.44,
+    "cards": {}
+  },
+  "Rampardos": {
+    "count": 4,
+    "share": 0.05,
+    "score": "9 - 9 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Alcremie": {
+    "count": 4,
+    "share": 0.05,
+    "score": "8 - 9 - 0",
+    "winPercentage": 47.06,
+    "cards": {}
+  },
+  "Serperior": {
+    "count": 3,
+    "share": 0.03,
+    "score": "2 - 9 - 0",
+    "winPercentage": 18.18,
+    "cards": {}
+  },
+  "Ninetales": {
+    "count": 3,
+    "share": 0.03,
+    "score": "5 - 4 - 0",
+    "winPercentage": 55.56,
+    "cards": {}
+  },
+  "Lucario ex": {
+    "count": 3,
+    "share": 0.03,
+    "score": "6 - 7 - 1",
+    "winPercentage": 42.86,
+    "cards": {}
+  },
+  "Gengar": {
+    "count": 3,
+    "share": 0.03,
+    "score": "7 - 8 - 0",
+    "winPercentage": 46.67,
+    "cards": {}
+  },
+  "Rayquaza ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "8 - 7 - 0",
+    "winPercentage": 53.33,
+    "cards": {}
+  },
+  "Beedrill": {
+    "count": 2,
+    "share": 0.02,
+    "score": "4 - 4 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Vanilluxe": {
+    "count": 2,
+    "share": 0.02,
+    "score": "4 - 6 - 0",
+    "winPercentage": 40.00,
+    "cards": {}
+  },
+  "Marowak ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "2 - 7 - 0",
+    "winPercentage": 22.22,
+    "cards": {}
+  },
+  "Appletun": {
+    "count": 2,
+    "share": 0.02,
+    "score": "1 - 4 - 0",
+    "winPercentage": 20.00,
+    "cards": {}
+  },
+  "Leafeon": {
+    "count": 2,
+    "share": 0.02,
+    "score": "0 - 3 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Pachirisu ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "10 - 3 - 0",
+    "winPercentage": 76.92,
+    "cards": {}
+  },
+  "Bastiodon": {
+    "count": 2,
+    "share": 0.02,
+    "score": "8 - 6 - 1",
+    "winPercentage": 53.33,
+    "cards": {}
+  },
+  "Pawmot": {
+    "count": 2,
+    "share": 0.02,
+    "score": "7 - 7 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Alolan Dugtrio ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "4 - 5 - 0",
+    "winPercentage": 44.44,
+    "cards": {}
+  },
+  "Machamp ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "2 - 4 - 0",
+    "winPercentage": 33.33,
+    "cards": {}
+  },
+  "Dragonite": {
+    "count": 2,
+    "share": 0.02,
+    "score": "1 - 4 - 0",
+    "winPercentage": 20.00,
+    "cards": {}
+  },
+  "Alolan Muk ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "4 - 9 - 0",
+    "winPercentage": 30.77,
+    "cards": {}
+  },
+  "Incineroar": {
+    "count": 2,
+    "share": 0.02,
+    "score": "1 - 4 - 0",
+    "winPercentage": 20.00,
+    "cards": {}
+  },
+  "Pidgeot ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "1 - 6 - 1",
+    "winPercentage": 12.50,
+    "cards": {}
+  },
+  "Crobat": {
+    "count": 2,
+    "share": 0.02,
+    "score": "3 - 7 - 0",
+    "winPercentage": 30.00,
+    "cards": {}
+  },
+  "Venusaur ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "1 - 4 - 1",
+    "winPercentage": 16.67,
+    "cards": {}
+  },
+  "Vaporeon": {
+    "count": 2,
+    "share": 0.02,
+    "score": "0 - 3 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Espeon": {
+    "count": 2,
+    "share": 0.02,
+    "score": "0 - 4 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Yanmega ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "0 - 8 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Mewtwo ex": {
+    "count": 2,
+    "share": 0.02,
+    "score": "0 - 4 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Garchomp": {
+    "count": 1,
+    "share": 0.01,
+    "score": "4 - 3 - 0",
+    "winPercentage": 57.14,
+    "cards": {}
+  },
+  "Machamp": {
+    "count": 1,
+    "share": 0.01,
+    "score": "4 - 4 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Vaporeon": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 1 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Wishiwashi ex": {
+    "count": 1,
+    "share": 0.01,
+    "score": "3 - 3 - 0",
+    "winPercentage": 50.00,
+    "cards": {}
+  },
+  "Kommo O": {
+    "count": 1,
+    "share": 0.01,
+    "score": "3 - 4 - 0",
+    "winPercentage": 42.86,
+    "cards": {}
+  },
+  "Torkoal": {
+    "count": 1,
+    "share": 0.01,
+    "score": "3 - 4 - 0",
+    "winPercentage": 42.86,
+    "cards": {}
+  },
+  "Alakazam": {
+    "count": 1,
+    "share": 0.01,
+    "score": "2 - 3 - 0",
+    "winPercentage": 40.00,
+    "cards": {}
+  },
+  "Ambipom": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 2 - 0",
+    "winPercentage": 33.33,
+    "cards": {}
+  },
+  "Melmetal": {
+    "count": 1,
+    "share": 0.01,
+    "score": "2 - 4 - 0",
+    "winPercentage": 33.33,
+    "cards": {}
+  },
+  "Mew ex": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 2 - 0",
+    "winPercentage": 33.33,
+    "cards": {}
+  },
+  "Empoleon": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 3 - 0",
+    "winPercentage": 25.00,
+    "cards": {}
+  },
+  "Vikavolt": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 3 - 0",
+    "winPercentage": 25.00,
+    "cards": {}
+  },
+  "Wormadam": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 3 - 0",
+    "winPercentage": 25.00,
+    "cards": {}
+  },
+  "Weezing": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 3 - 1",
+    "winPercentage": 20.00,
+    "cards": {}
+  },
+  "Tinkaton ex": {
+    "count": 1,
+    "share": 0.01,
+    "score": "1 - 4 - 0",
+    "winPercentage": 20.00,
+    "cards": {}
+  },
+  "Sylveon": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Oricorio": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Lilligant": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Bisharp": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Alolan Golem": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Moltres ex": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Passimian ex": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Krookodile": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Rapidash": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Kangaskhan": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 1 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Primeape": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 3 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Skarmory": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 1 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Delcatty": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 1 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Toucannon": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 1 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Golem": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Mamoswine": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Salazzle": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 3 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Medicham": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Dugtrio": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 2 - 0",
+    "winPercentage": 0.00,
+    "cards": {}
+  },
+  "Nidoqueen": {
+    "count": 1,
+    "share": 0.01,
+    "score": "0 - 0 - 0",
+    "winPercentage": null,
+    "cards": {}
+  }
+} 

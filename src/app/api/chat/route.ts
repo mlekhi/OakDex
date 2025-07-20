@@ -14,7 +14,7 @@ interface CardData {
 }
 
 // parse JSON metadata
-const safeJsonParse = (value: any) => {
+const safeJsonParse = (value: unknown) => {
   if (typeof value !== 'string' || !value) return null;
   try {
     return JSON.parse(value);
@@ -32,28 +32,28 @@ interface CardSearchResult {
   stage: string | null;
   setName: string | null;
   description: string | null;
-  attacks: any[] | null;
-  abilities: any[] | null;
-  weaknesses: any[] | null;
+  attacks: unknown[] | null;
+  abilities: unknown[] | null;
+  weaknesses: unknown[] | null;
   evolveFrom: string | null;
   retreat: number | null;
   content: string;
   score: number | undefined;
 }
 
-const mapCardResult = (result: any): CardSearchResult => ({
-  cardId: result.metadata?.cardId || 'Unknown',
-  cardName: result.metadata?.cardName || 'Unknown',
-  cardType: result.metadata?.cardType || null,
-  hp: result.metadata?.hp || null,
-  stage: result.metadata?.stage || null,
-  setName: result.metadata?.setName || null,
-  description: result.metadata?.description || null,
+const mapCardResult = (result: { metadata?: Record<string, unknown>; content: string; score?: number }): CardSearchResult => ({
+  cardId: (result.metadata?.cardId as string) || 'Unknown',
+  cardName: (result.metadata?.cardName as string) || 'Unknown',
+  cardType: (result.metadata?.cardType as string) || null,
+  hp: (result.metadata?.hp as number) || null,
+  stage: (result.metadata?.stage as string) || null,
+  setName: (result.metadata?.setName as string) || null,
+  description: (result.metadata?.description as string) || null,
   attacks: safeJsonParse(result.metadata?.attacks),
   abilities: safeJsonParse(result.metadata?.abilities),
   weaknesses: safeJsonParse(result.metadata?.weaknesses),
-  evolveFrom: result.metadata?.evolveFrom || null,
-  retreat: result.metadata?.retreat || null,
+  evolveFrom: (result.metadata?.evolveFrom as string) || null,
+  retreat: (result.metadata?.retreat as number) || null,
   content: result.content,
   score: result.score
 });
@@ -212,6 +212,7 @@ ALWAYS CHECK EVOLUTION LINES FIRST - if you see Stage 1 or Stage 2 Pokémon with
                   validatedRecommendations.push({
                     cardId: searchResults[0].metadata.cardId as string,
                     cardName: searchResults[0].metadata.cardName as string,
+                    image: searchResults[0].metadata.image as string,
                     reason: rec.reason,
                     priority: rec.priority
                   });

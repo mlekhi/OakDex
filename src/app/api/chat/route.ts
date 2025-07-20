@@ -2,6 +2,7 @@ import { openai } from "@ai-sdk/openai";
 import { streamText, tool } from "ai";
 import { z } from "zod";
 import { getCardContext, searchCards, getSimilarCards } from '@/utils/vectorStore';
+import { CardRecommendation } from '@/types/cardRecommendations';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -11,6 +12,51 @@ interface CardData {
   name: string;
   quantity: number;
 }
+
+// parse JSON metadata
+const safeJsonParse = (value: any) => {
+  if (typeof value !== 'string' || !value) return null;
+  try {
+    return JSON.parse(value);
+  } catch {
+    return null;
+  }
+};
+
+// util to map vector search results to consistent card format
+interface CardSearchResult {
+  cardId: string;
+  cardName: string;
+  cardType: string | null;
+  hp: number | null;
+  stage: string | null;
+  setName: string | null;
+  description: string | null;
+  attacks: any[] | null;
+  abilities: any[] | null;
+  weaknesses: any[] | null;
+  evolveFrom: string | null;
+  retreat: number | null;
+  content: string;
+  score: number | undefined;
+}
+
+const mapCardResult = (result: any): CardSearchResult => ({
+  cardId: result.metadata?.cardId || 'Unknown',
+  cardName: result.metadata?.cardName || 'Unknown',
+  cardType: result.metadata?.cardType || null,
+  hp: result.metadata?.hp || null,
+  stage: result.metadata?.stage || null,
+  setName: result.metadata?.setName || null,
+  description: result.metadata?.description || null,
+  attacks: safeJsonParse(result.metadata?.attacks),
+  abilities: safeJsonParse(result.metadata?.abilities),
+  weaknesses: safeJsonParse(result.metadata?.weaknesses),
+  evolveFrom: result.metadata?.evolveFrom || null,
+  retreat: result.metadata?.retreat || null,
+  content: result.content,
+  score: result.score
+});
 
 export async function POST(req: Request) {
   try {
@@ -81,6 +127,26 @@ Focus specifically on the mobile game experience, not the physical card game.
 
 IMPORTANT: Keep your responses concise and to the point. Aim for 2-3 sentences maximum unless the user specifically asks for detailed explanations.
 
+CRITICAL DECK BUILDING RULES - ALWAYS CHECK THESE FIRST:
+
+1. EVOLUTION LINE COMPLETENESS:
+   - If a deck contains Stage 1 or Stage 2 Pokémon, you MUST have the Basic Pokémon they evolve from
+   - Example: If you have Charizard ex (Stage 2), you need Charmander (Basic) and Charmeleon (Stage 1)
+   - Missing Basic Pokémon = deck cannot function properly
+   - Always recommend the missing Basic Pokémon as HIGH priority
+
+2. EVOLUTION RATIOS:
+   - Basic Pokémon: 3-4 copies for consistency
+   - Stage 1: 2-3 copies (fewer than Basic)
+   - Stage 2: 1-2 copies (fewest of the line)
+   - Trainer cards: 8-12 cards for draw power and utility
+   - Total: Exactly 20 cards
+
+3. ENERGY CONSISTENCY:
+   - Focus on 1-2 energy types maximum
+   - Avoid 3+ energy types (causes random energy generation issues)
+   - Match energy types to your main attackers
+
 IMPORTANT: Pokémon TCG Pocket/Mobile has unique rules different from the physical TCG:
 
 DECK AND CARD TYPES:
@@ -111,15 +177,63 @@ HOW TO WIN:
 - If a player deck outs (runs out of cards to draw at turn start), they lose
 - There is a time limit (usually 5 minutes per match). If time runs out, the player with the most points wins; a tie means a draw
 
-When giving advice, always consider these mobile-specific rules and mechanics. Keep responses brief and actionable, but maintain your characteristic Professor Oak personality and speaking style.${deckContext}`;
+When giving advice, always consider these mobile-specific rules and mechanics. Keep responses brief and actionable, but maintain your characteristic Professor Oak personality and speaking style.
+
+IMPORTANT: When recommending cards, ALWAYS use the recommend_cards tool to provide structured recommendations with card IDs that the frontend can display.
+
+ALWAYS CHECK EVOLUTION LINES FIRST - if you see Stage 1 or Stage 2 Pokémon without their Basic forms, this is the highest priority issue to address!${deckContext}`;
     
-    // Consider using a different model
     const result = streamText({
       model: openai("gpt-4o"),
       system: systemPrompt,
       messages,
-      maxSteps: 4,
+      maxSteps: 6,
       tools: {
+        recommend_cards: tool({
+          description: "Provide structured card recommendations for deck building. Use this when the user asks for card suggestions, deck improvements, or specific card recommendations. This tool returns card IDs that the frontend can use to display card visuals.",
+          parameters: z.object({
+            reason: z.string().describe("Why you're recommending these cards (e.g., 'synergy with Charizard', 'energy acceleration', 'draw power')"),
+            recommendations: z.array(z.object({
+              cardId: z.string().describe("The unique card ID from the database"),
+              cardName: z.string().describe("The name of the card"),
+              reason: z.string().describe("Why this specific card is recommended"),
+              priority: z.enum(['high', 'medium', 'low']).describe("How important this recommendation is")
+            })).describe("Array of card recommendations with IDs"),
+            strategy: z.string().optional().describe("Brief strategy advice about how to use these cards")
+          }),
+          execute: async ({ reason, recommendations, strategy }) => {
+            try {
+              // check that the recommended cards exist in our database
+              const validatedRecommendations: CardRecommendation[] = [];
+              
+              for (const rec of recommendations) {
+                const searchResults = await searchCards(rec.cardName, 1);
+                if (searchResults.length > 0 && searchResults[0].metadata?.cardId) {
+                  validatedRecommendations.push({
+                    cardId: searchResults[0].metadata.cardId as string,
+                    cardName: searchResults[0].metadata.cardName as string,
+                    reason: rec.reason,
+                    priority: rec.priority
+                  });
+                }
+              }
+              
+              return {
+                success: true,
+                reason,
+                recommendations: validatedRecommendations,
+                strategy: strategy || "These cards work well together in your deck strategy.",
+                totalRecommended: validatedRecommendations.length
+              };
+            } catch (error) {
+              return {
+                success: false,
+                error: `Failed to validate card recommendations: ${error instanceof Error ? error.message : 'Unknown error'}`,
+                recommendations: []
+              };
+            }
+          }
+        }),
         search_cards: tool({
           description: "Search for cards in the vector database. Use this to find cards with specific attributes, types, attacks, or other characteristics. This provides detailed card information for recommendations.",
           parameters: z.object({
@@ -132,22 +246,7 @@ When giving advice, always consider these mobile-specific rules and mechanics. K
               return {
                 success: true,
                 query,
-                results: results.map(result => ({
-                  cardId: result.metadata?.cardId || 'Unknown',
-                  cardName: result.metadata?.cardName || 'Unknown',
-                  cardType: result.metadata?.cardType || null,
-                  hp: result.metadata?.hp || null,
-                  stage: result.metadata?.stage || null,
-                  setName: result.metadata?.setName || null,
-                  description: result.metadata?.description || null,
-                  attacks: typeof result.metadata?.attacks === 'string' && result.metadata.attacks !== '' ? JSON.parse(result.metadata.attacks) : null,
-                  abilities: typeof result.metadata?.abilities === 'string' && result.metadata.abilities !== '' ? JSON.parse(result.metadata.abilities) : null,
-                  weaknesses: typeof result.metadata?.weaknesses === 'string' && result.metadata.weaknesses !== '' ? JSON.parse(result.metadata.weaknesses) : null,
-                  evolveFrom: result.metadata?.evolveFrom || null,
-                  retreat: result.metadata?.retreat || null,
-                  content: result.content,
-                  score: result.score
-                }))
+                results: results.map(mapCardResult)
               };
             } catch (error) {
               return {
@@ -169,22 +268,7 @@ When giving advice, always consider these mobile-specific rules and mechanics. K
               return {
                 success: true,
                 cardName,
-                similarCards: results.map(result => ({
-                  cardId: result.metadata?.cardId || 'Unknown',
-                  cardName: result.metadata?.cardName || 'Unknown',
-                  cardType: result.metadata?.cardType || null,
-                  hp: result.metadata?.hp || null,
-                  stage: result.metadata?.stage || null,
-                  setName: result.metadata?.setName || null,
-                  description: result.metadata?.description || null,
-                  attacks: typeof result.metadata?.attacks === 'string' && result.metadata.attacks !== '' ? JSON.parse(result.metadata.attacks) : null,
-                  abilities: typeof result.metadata?.abilities === 'string' && result.metadata.abilities !== '' ? JSON.parse(result.metadata.abilities) : null,
-                  weaknesses: typeof result.metadata?.weaknesses === 'string' && result.metadata.weaknesses !== '' ? JSON.parse(result.metadata.weaknesses) : null,
-                  evolveFrom: result.metadata?.evolveFrom || null,
-                  retreat: result.metadata?.retreat || null,
-                  content: result.content,
-                  score: result.score
-                }))
+                similarCards: results.map(mapCardResult)
               };
             } catch (error) {
               return {

@@ -33,6 +33,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 - **Chat Interface**: AI deck strategy advice
 - **Card Data**: Updated Pokémon TCG card information via TCGdex API
+- **Deck Builder Interface**: Drag-and-drop card selection for building decks
 - **Mobile Optimized**: Responsive design for mobile devices
 - **Deck Strategy**: Focus on balance and competitive strategies for TCG Mobile
 

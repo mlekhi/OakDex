@@ -4,4 +4,5 @@ export interface CardRecommendation {
   image: string;
   reason: string;
   priority: 'high' | 'medium' | 'low';
+  quantity: number;
 } 

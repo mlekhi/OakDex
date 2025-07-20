@@ -197,7 +197,8 @@ ALWAYS CHECK EVOLUTION LINES FIRST - if you see Stage 1 or Stage 2 Pokémon with
               cardId: z.string().describe("The unique card ID from the database"),
               cardName: z.string().describe("The name of the card"),
               reason: z.string().describe("Why this specific card is recommended"),
-              priority: z.enum(['high', 'medium', 'low']).describe("How important this recommendation is")
+              priority: z.enum(['high', 'medium', 'low']).describe("How important this recommendation is"),
+              quantity: z.number().describe("How many copies of this card to add to the deck (1-4)")
             })).describe("Array of card recommendations with IDs"),
             strategy: z.string().optional().describe("Brief strategy advice about how to use these cards")
           }),
@@ -214,7 +215,8 @@ ALWAYS CHECK EVOLUTION LINES FIRST - if you see Stage 1 or Stage 2 Pokémon with
                     cardName: searchResults[0].metadata.cardName as string,
                     image: searchResults[0].metadata.image as string,
                     reason: rec.reason,
-                    priority: rec.priority
+                    priority: rec.priority,
+                    quantity: rec.quantity
                   });
                 }
               }

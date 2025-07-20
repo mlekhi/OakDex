@@ -16,6 +16,7 @@ export default function Chat() {
     selectedSet,
     loadCards,
     addCardToDeck,
+    reduceCardQuantity,
     handleDragOver,
     handleDragLeave,
     handleDrop,
@@ -25,6 +26,10 @@ export default function Chat() {
   const handleSetChange = (setId: string) => {
     setSelectedSet(setId);
     loadCards(setId);
+  };
+
+  const handleRemoveCard = (cardId: string) => {
+    reduceCardQuantity(cardId);
   };
 
   return (
@@ -54,6 +59,7 @@ export default function Chat() {
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
+              onRemoveCard={handleRemoveCard}
             />
           </div>
         </div>

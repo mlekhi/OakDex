@@ -63,6 +63,23 @@ export function useCards() {
     setSelectedCards(prev => prev.filter(c => c.id !== cardId));
   };
 
+  const reduceCardQuantity = (cardId: string) => {
+    setSelectedCards(prev => {
+      const existing = prev.find(c => c.id === cardId);
+      if (!existing) return prev;
+      
+      if (existing.quantity <= 1) {
+        // Remove card entirely
+        return prev.filter(c => c.id !== cardId);
+      }
+      
+      // Reduce quantity by 1
+      return prev.map(c => 
+        c.id === cardId ? { ...c, quantity: c.quantity - 1 } : c
+      );
+    });
+  };
+
   const updateCardQuantity = (cardId: string, quantity: number) => {
     if (quantity === 0) {
       removeCardFromDeck(cardId);
@@ -107,6 +124,7 @@ export function useCards() {
     loadCards,
     addCardToDeck,
     removeCardFromDeck,
+    reduceCardQuantity,
     updateCardQuantity,
     handleDragOver,
     handleDragLeave,

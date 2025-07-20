@@ -9,6 +9,7 @@ interface DeckBuilderProps {
   onDragOver: (e: React.DragEvent) => void;
   onDragLeave: () => void;
   onDrop: (e: React.DragEvent) => void;
+  onRemoveCard?: (cardId: string) => void;
 }
 
 export default function DeckBuilder({
@@ -16,9 +17,16 @@ export default function DeckBuilder({
   dragOver,
   onDragOver,
   onDragLeave,
-  onDrop
+  onDrop,
+  onRemoveCard
 }: DeckBuilderProps) {
   const totalCards = selectedCards.reduce((sum, card) => sum + card.quantity, 0);
+
+  const handleCardClick = (cardId: string) => {
+    if (onRemoveCard) {
+      onRemoveCard(cardId);
+    }
+  };
 
   return (
     <div className="lg:col-span-1">
@@ -42,15 +50,23 @@ export default function DeckBuilder({
           <div className="flex flex-wrap gap-2">
             {selectedCards.map((card) => (
               Array.from({ length: card.quantity }, (_, index) => (
-                <div key={`${card.id}-${index}`} className="relative">
+                <div 
+                  key={`${card.id}-${index}`} 
+                  className="relative cursor-pointer group"
+                  onClick={() => handleCardClick(card.id)}
+                  title="Click to remove card"
+                >
                   <img 
                     src={getCardImageUrl(card.image, 'low', 'webp')} 
                     alt={card.name}
-                    className="w-12 h-16 object-cover rounded border"
+                    className="w-12 h-16 object-cover rounded border transition-all duration-200 group-hover:scale-105 group-hover:shadow-lg"
                     onError={(e) => {
                       e.currentTarget.src = `https://via.placeholder.com/48x64/4F46E5/FFFFFF?text=${encodeURIComponent(card.name.substring(0, 8))}`;
                     }}
                   />
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <span className="text-white text-xs font-bold">×</span>
+                  </div>
                 </div>
               ))
             )).flat()}
@@ -62,6 +78,9 @@ export default function DeckBuilder({
         <div className="mt-4 space-y-2">
           <div className="text-sm text-muted-foreground">
             Total cards: {totalCards}/20
+          </div>
+          <div className="text-xs text-muted-foreground">
+            Click any card to remove it from your deck
           </div>
         </div>
       )}

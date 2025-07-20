@@ -1,57 +1,47 @@
 "use client";
 
-import ChatInterface from "@/components/ChatInterface";
-import AvailableCards from "@/components/AvailableCards";
-import DeckBuilder from "@/components/DeckBuilder";
-import { useCards } from "@/hooks/useCards";
+import Link from "next/link";
+import { useState } from "react";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
-export default function Chat() {
-  const {
-    selectedCards,
-    availableCards,
-    isLoadingCards,
-    dragOver,
-    selectedSet,
-    loadCards,
-    addCardToDeck,
-    handleDragOver,
-    handleDragLeave,
-    handleDrop,
-    setSelectedSet
-  } = useCards();
-
-  const handleSetChange = (setId: string) => {
-    setSelectedSet(setId);
-    loadCards(setId);
-  };
+export default function LandingPage() {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="flex flex-col w-full max-w-6xl py-8 mx-auto">
-      <ChatInterface selectedCards={selectedCards} />
+    <div className="min-h-screen">
+      <Header />
 
-      {/* Deck builder section */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Deck Builder</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <AvailableCards
-            availableCards={availableCards}
-            isLoadingCards={isLoadingCards}
-            selectedSet={selectedSet}
-            onSetChange={handleSetChange}
-            onLoadCards={() => loadCards()}
-            onAddCard={addCardToDeck}
-          />
+      {/* Hero Section */}
+      <div className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            OakDex
+          </h1>
+          <p>Your Pokémon TCG Pocket Mentor</p>
 
-          {/* Deck Building Area */}
-          <DeckBuilder
-            selectedCards={selectedCards}
-            dragOver={dragOver}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <Link 
+              href="/chat"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
+            >
+              <span>Start Your Journey</span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-300 ${isHovered ? 'translate-x-1' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

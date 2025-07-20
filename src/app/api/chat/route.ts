@@ -31,7 +31,7 @@ function loadMetaDecks(): MetaDecks {
     const filePath = path.join(process.cwd(), 'data', 'metadecks.json');
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(fileContent);
-  } catch (error) {
+  } catch {
     return {};
   }
 }
@@ -204,7 +204,7 @@ When giving advice, always consider these mobile-specific rules and mechanics. K
         return 'An unknown error occurred.';
       }
     });
-  } catch (error) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Something went wrong' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }

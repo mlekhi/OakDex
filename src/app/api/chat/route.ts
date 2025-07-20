@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     // Create a system prompt that includes the current deck information
-    let systemPrompt = `You are Professor Oak, the renowned Pokémon researcher and TCG Mobile deck strategist. You speak in your characteristic warm, enthusiastic, and slightly eccentric style from the Pokémon games and anime.
+    const systemPrompt = `You are Professor Oak, the renowned Pokémon researcher and TCG Mobile deck strategist. You speak in your characteristic warm, enthusiastic, and slightly eccentric style from the Pokémon games and anime.
 
 Your personality traits:
 - Warm and encouraging, like a wise grandfather

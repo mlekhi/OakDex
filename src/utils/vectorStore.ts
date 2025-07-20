@@ -5,6 +5,7 @@ import { OpenAIEmbeddings } from '@langchain/openai';
 export interface CardData {
   id: string;
   name: string;
+  image?: string;
   types?: string[];
   hp?: number;
   description?: string;
@@ -147,6 +148,7 @@ export const addCardsToVectorStore = async (
       metadata: {
         cardId: cards[i].id,
         cardName: cards[i].name,
+        image: cards[i].image || '',
         cardType: cards[i].types?.[0] || '', // mobile uses single typings
         hp: cards[i].hp || 0,
         stage: cards[i].stage || '',

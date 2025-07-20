@@ -6,6 +6,7 @@ export interface CardData {
   id: string;
   name: string;
   image?: string;
+  category?: string; // "Pokemon" or "Trainer"
   types?: string[];
   hp?: number;
   description?: string;
@@ -27,6 +28,8 @@ export interface CardData {
   }>;
   evolveFrom?: string;
   retreat?: number;
+  trainerType?: string;
+  effect?: string; // Trainer card effect text
   variants?: {
     holo?: boolean;
     normal?: boolean;
@@ -55,55 +58,69 @@ export const createEmbeddings = () => {
 export const processCardToText = (card: CardData): string => {
   const parts: string[] = [];
   
-  parts.push(`${card.name} is a ${card.types?.join('/') || 'Pokémon'} card`);
-  
-  if (card.stage) {
-    parts.push(`(${card.stage} stage)`);
-  }
-  
-  if (card.hp) {
-    parts.push(`with ${card.hp} HP`);
-  }
-  
-  if (card.description) {
-    parts.push(`. ${card.description}`);
-  }
-  
-  if (card.evolveFrom) {
-    parts.push(`It evolves from ${card.evolveFrom}`);
-  }
-  
-  if (card.attacks && card.attacks.length > 0) {
-    const attackDescriptions = card.attacks.map(attack => {
-      let desc = `${attack.name}`;
-      if (attack.cost && attack.cost.length > 0) {
-        desc += ` (costs ${attack.cost.join(', ')})`;
-      }
-      if (attack.damage) {
-        desc += ` deals ${attack.damage} damage`;
-      }
-      if (attack.description) {
-        desc += ` - ${attack.description}`;
-      }
-      return desc;
-    });
-    parts.push(`Its attacks include ${attackDescriptions.join(' and ')}`);
-  }
-  
-  if (card.abilities && card.abilities.length > 0) {
-    const abilityDescriptions = card.abilities.map(ability => 
-      `${ability.name}: ${ability.description}`
-    );
-    parts.push(`It has the abilities ${abilityDescriptions.join(' and ')}`);
-  }
-  
-  if (card.weaknesses && card.weaknesses.length > 0) {
-    const weaknessText = card.weaknesses.map(w => `${w.type} +${w.value}`).join(', ');
-    parts.push(`It is weak to ${weaknessText}`);
-  }
-  
-  if (card.retreat) {
-    parts.push(`It has a retreat cost of ${card.retreat}`);
+  if (card.category === 'Trainer') {
+    // Handle trainer cards
+    parts.push(`${card.name} is a ${card.trainerType || 'Trainer'} card`);
+    
+    if (card.effect) {
+      parts.push(`Effect: ${card.effect}`);
+    }
+    
+    if (card.description) {
+      parts.push(`Description: ${card.description}`);
+    }
+  } else {
+    // Handle Pokémon cards
+    parts.push(`${card.name} is a ${card.types?.join('/') || 'Pokémon'} card`);
+    
+    if (card.stage) {
+      parts.push(`(${card.stage} stage)`);
+    }
+    
+    if (card.hp) {
+      parts.push(`with ${card.hp} HP`);
+    }
+    
+    if (card.description) {
+      parts.push(`. ${card.description}`);
+    }
+    
+    if (card.evolveFrom) {
+      parts.push(`It evolves from ${card.evolveFrom}`);
+    }
+    
+    if (card.attacks && card.attacks.length > 0) {
+      const attackDescriptions = card.attacks.map(attack => {
+        let desc = `${attack.name}`;
+        if (attack.cost && attack.cost.length > 0) {
+          desc += ` (costs ${attack.cost.join(', ')})`;
+        }
+        if (attack.damage) {
+          desc += ` deals ${attack.damage} damage`;
+        }
+        if (attack.description) {
+          desc += ` - ${attack.description}`;
+        }
+        return desc;
+      });
+      parts.push(`Its attacks include ${attackDescriptions.join(' and ')}`);
+    }
+    
+    if (card.abilities && card.abilities.length > 0) {
+      const abilityDescriptions = card.abilities.map(ability => 
+        `${ability.name}: ${ability.description}`
+      );
+      parts.push(`It has the abilities ${abilityDescriptions.join(' and ')}`);
+    }
+    
+    if (card.weaknesses && card.weaknesses.length > 0) {
+      const weaknessText = card.weaknesses.map(w => `${w.type} +${w.value}`).join(', ');
+      parts.push(`It is weak to ${weaknessText}`);
+    }
+    
+    if (card.retreat) {
+      parts.push(`It has a retreat cost of ${card.retreat}`);
+    }
   }
   
   if (card.setName) {
@@ -149,6 +166,7 @@ export const addCardsToVectorStore = async (
         cardId: cards[i].id,
         cardName: cards[i].name,
         image: cards[i].image || '',
+        category: cards[i].category || '',
         cardType: cards[i].types?.[0] || '', // mobile uses single typings
         hp: cards[i].hp || 0,
         stage: cards[i].stage || '',
@@ -159,6 +177,8 @@ export const addCardsToVectorStore = async (
         weaknesses: cards[i].weaknesses ? JSON.stringify(cards[i].weaknesses) : '',
         evolveFrom: cards[i].evolveFrom || '',
         retreat: cards[i].retreat || 0,
+        trainerType: cards[i].trainerType || '',
+        effect: cards[i].effect || '',
         text: texts[i],
       }
     }));

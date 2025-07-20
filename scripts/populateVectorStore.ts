@@ -89,6 +89,7 @@ async function fetchCardDetails(cardId: string, lang: string = 'en'): Promise<Ca
       id: data.id,
       name: data.name,
       image: data.image,
+      category: data.category,
       types: data.types,
       hp: data.hp,
       description: data.description,
@@ -110,6 +111,8 @@ async function fetchCardDetails(cardId: string, lang: string = 'en'): Promise<Ca
       })),
       evolveFrom: data.evolveFrom,
       retreat: data.retreat,
+      trainerType: data.trainerType,
+      effect: data.effect,
       variants: data.variants,
     };
   } catch (error) {

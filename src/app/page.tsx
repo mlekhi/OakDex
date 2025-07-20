@@ -1,31 +1,57 @@
 "use client";
 
-import { useChat } from "@ai-sdk/react";
+import ChatInterface from "@/components/ChatInterface";
+import AvailableCards from "@/components/AvailableCards";
+import DeckBuilder from "@/components/DeckBuilder";
+import { useCards } from "@/hooks/useCards";
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
-  return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      {messages.map((message) => (
-        <div key={message.id} className="whitespace-pre-wrap">
-          {message.role === "user" ? "User: " : "AI: "}
-          {message.parts.map((part, i) => {
-            switch (part.type) {
-              case "text":
-                return <div key={`${message.id}-${i}`}>{part.text}</div>;
-            }
-          })}
-        </div>
-      ))}
+  const {
+    selectedCards,
+    availableCards,
+    isLoadingCards,
+    dragOver,
+    selectedSet,
+    loadCards,
+    addCardToDeck,
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    setSelectedSet
+  } = useCards();
 
-      <form onSubmit={handleSubmit}>
-        <input
-          className="fixed dark:bg-zinc-900 bottom-0 w-full max-w-md p-2 mb-8 border border-zinc-300 dark:border-zinc-800 rounded shadow-xl"
-          value={input}
-          placeholder="Say something..."
-          onChange={handleInputChange}
-        />
-      </form>
+  const handleSetChange = (setId: string) => {
+    setSelectedSet(setId);
+    loadCards(setId);
+  };
+
+  return (
+    <div className="flex flex-col w-full max-w-6xl py-8 mx-auto">
+      <ChatInterface selectedCards={selectedCards} />
+
+      {/* Deck builder section */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4">Deck Builder</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <AvailableCards
+            availableCards={availableCards}
+            isLoadingCards={isLoadingCards}
+            selectedSet={selectedSet}
+            onSetChange={handleSetChange}
+            onLoadCards={() => loadCards()}
+            onAddCard={addCardToDeck}
+          />
+
+          {/* Deck Building Area */}
+          <DeckBuilder
+            selectedCards={selectedCards}
+            dragOver={dragOver}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          />
+        </div>
+      </div>
     </div>
   );
 }

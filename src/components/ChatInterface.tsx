@@ -3,6 +3,7 @@
 import { useChat } from "@ai-sdk/react";
 import { DeckCard } from "@/types/cards";
 import { getCardImageUrl } from "@/utils/cardUtils";
+import { Lightbulb } from "lucide-react";
 
 interface ChatInterfaceProps {
   selectedCards: DeckCard[];
@@ -37,7 +38,7 @@ export default function ChatInterface({ selectedCards }: ChatInterfaceProps) {
     <div className="mb-8">
       <h2 className="text-2xl font-bold mb-4">Chat with Professor Oak</h2>
       <div className="flex flex-col w-full">
-        <div className="mb-4 p-4 border rounded-lg">
+        <div className="mb-4 p-4 shadow-lg bg-white rounded-lg">
           <h3 className="font-semibold mb-2">Current Deck:</h3>
           {selectedCards.length === 0 ? (
             <p className="text-muted-foreground">No cards selected in Deck Builder</p>
@@ -48,7 +49,7 @@ export default function ChatInterface({ selectedCards }: ChatInterfaceProps) {
                   <img 
                     src={getCardImageUrl(card.image, 'low', 'webp')} 
                     alt={card.name}
-                    className="w-12 h-16 object-cover rounded border"
+                    className="w-12 h-16 object-cover shadow-md"
                     onError={(e) => {
                       e.currentTarget.src = `https://via.placeholder.com/48x64/4F46E5/FFFFFF?text=${encodeURIComponent(card.name.substring(0, 8))}`;
                     }}
@@ -65,7 +66,7 @@ export default function ChatInterface({ selectedCards }: ChatInterfaceProps) {
         </div>
 
         {messages.map((message) => (
-          <div key={message.id} className="whitespace-pre-wrap mb-4 p-3 border rounded-lg">
+          <div key={message.id} className="whitespace-pre-wrap mb-4 p-3 rounded-lg shadow-lg bg-white">
             <div className="font-semibold mb-1">
               {message.role === "user" ? "You" : "Professor Oak"}
             </div>
@@ -79,22 +80,25 @@ export default function ChatInterface({ selectedCards }: ChatInterfaceProps) {
         ))}
 
         <form onSubmit={handleSubmit} className="mt-4">
-          <input
-            className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            value={input}
-            placeholder="Ask Professor Oak about your deck..."
-            onChange={handleInputChange}
-          />
+          <div className="flex gap-2">
+            <input
+              className="flex-1 p-3 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:shadow-lg transition-shadow"
+              value={input}
+              placeholder="Ask Professor Oak about your deck..."
+              onChange={handleInputChange}
+            />
+            {selectedCards.length > 0 && (
+              <button
+                type="button"
+                onClick={getDeckRecommendations}
+                className="px-3 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-md hover:shadow-lg transition-shadow flex items-center justify-center"
+                title="Get deck recommendations"
+              >
+                <Lightbulb className="w-5 h-5" />
+              </button>
+            )}
+          </div>
         </form>
-
-        {selectedCards.length > 0 && (
-          <button
-            onClick={getDeckRecommendations}
-            className="mt-4 w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-          >
-            Get AI Recommendations
-          </button>
-        )}
       </div>
     </div>
   );

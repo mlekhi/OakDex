@@ -29,7 +29,7 @@ export default function AvailableCards({
           <select
             value={selectedSet}
             onChange={(e) => onSetChange(e.target.value)}
-            className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-3 py-2 rounded-full shadow-md focus:ring-2 focus:ring-blue-500 focus:shadow-lg transition-shadow"
           >
             <option value="A1">Genetic Apex</option>
             <option value="A2">Space-Time Smackdown</option>
@@ -41,7 +41,7 @@ export default function AvailableCards({
           <button
             onClick={onLoadCards}
             disabled={isLoadingCards}
-            className="px-4 py-2 rounded-lg"
+            className="px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow"
           >
             {isLoadingCards ? (
               <Loader2 className="w-5 h-5 animate-spin" />
@@ -76,7 +76,7 @@ export default function AvailableCards({
               draggable
               onDragStart={(e) => e.dataTransfer.setData('text/plain', card.id)}
               onClick={() => onAddCard(card)}
-              className="cursor-pointer p-2 hover:shadow-md transition-shadow"
+              className="cursor-pointer p-2"
             >
               <div className="relative w-full rounded overflow-hidden">
                 <img 

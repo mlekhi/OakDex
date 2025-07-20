@@ -9,25 +9,27 @@ export default function LandingPage() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
       {/* Hero Section */}
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center">
+      <div className="flex-1 flex items-center justify-center">
+        <div className="max-w-6xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             OakDex
           </h1>
-          <p>Your Pokémon TCG Pocket Mentor</p>
+          <p className="text-xl md:text-2xl mb-12 text-gray-600">
+            Your Pokémon TCG Pocket Mentor
+          </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
               href="/chat"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
+              className="bg-white text-gray-800 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-102 flex items-center space-x-2"
             >
-              <span>Start Your Journey</span>
+              <span>Build Your Deck</span>
               <svg 
                 className={`w-5 h-5 transition-transform duration-300 ${isHovered ? 'translate-x-1' : ''}`} 
                 fill="none" 

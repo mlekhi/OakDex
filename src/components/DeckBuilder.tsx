@@ -36,10 +36,10 @@ export default function DeckBuilder({
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
-        className={`min-h-64 p-4 border-2 border-dashed rounded-lg transition-colors ${
+        className={`min-h-64 p-4 rounded-lg transition-all duration-300 shadow-lg ${
           dragOver 
-            ? 'border-blue-400 bg-blue-50 dark:bg-blue-950' 
-            : 'border-gray-300'
+            ? 'shadow-blue-200 bg-blue-50 dark:bg-blue-950' 
+            : 'shadow-gray-200 bg-white'
         }`}
       >
         {selectedCards.length === 0 ? (
@@ -59,7 +59,7 @@ export default function DeckBuilder({
                   <img 
                     src={getCardImageUrl(card.image, 'low', 'webp')} 
                     alt={card.name}
-                    className="w-12 h-16 object-cover rounded border transition-all duration-200 group-hover:scale-105 group-hover:shadow-lg"
+                    className="w-12 h-16 object-cover rounded shadow-md transition-all duration-200 group-hover:scale-105 group-hover:shadow-lg"
                     onError={(e) => {
                       e.currentTarget.src = `https://via.placeholder.com/48x64/4F46E5/FFFFFF?text=${encodeURIComponent(card.name.substring(0, 8))}`;
                     }}

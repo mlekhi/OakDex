@@ -1,6 +1,7 @@
 "use client";
 
 import { RefreshCw, Loader2 } from "lucide-react";
+import Image from "next/image";
 import { Card } from "@/types/cards";
 import { getCardImageUrl } from "@/utils/cardUtils";
 
@@ -81,14 +82,12 @@ export default function AvailableCards({
               className="cursor-pointer p-2"
             >
               <div className="relative w-full rounded overflow-hidden">
-                <img 
+                <Image 
                   src={getCardImageUrl(card.image, 'low', 'webp')} 
                   alt={card.name}
+                  width={200}
+                  height={280}
                   className="w-full h-auto object-contain"
-                  onError={(e) => {
-                    console.log('Image failed to load:', card.image);
-                    e.currentTarget.src = `https://via.placeholder.com/200x280/4F46E5/FFFFFF?text=${encodeURIComponent(card.name)}`;
-                  }}
                 />
               </div>
             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { DeckCard } from "@/types/cards";
 import { getCardImageUrl } from "@/utils/cardUtils";
 
@@ -56,13 +57,12 @@ export default function DeckBuilder({
                   onClick={() => handleCardClick(card.id)}
                   title="Click to remove card"
                 >
-                  <img 
+                  <Image 
                     src={getCardImageUrl(card.image, 'low', 'webp')} 
                     alt={card.name}
+                    width={48}
+                    height={64}
                     className="w-12 h-16 object-cover rounded shadow-md transition-all duration-200 group-hover:scale-105 group-hover:shadow-lg"
-                    onError={(e) => {
-                      e.currentTarget.src = `https://via.placeholder.com/48x64/4F46E5/FFFFFF?text=${encodeURIComponent(card.name.substring(0, 8))}`;
-                    }}
                   />
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     <span className="text-white text-xs font-bold">×</span>

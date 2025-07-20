@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { CardRecommendation } from "../types/cardRecommendations";
 import { getCardImageUrl } from "../utils/cardUtils";
 
@@ -41,11 +42,11 @@ export default function CardRecommendations({
     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
       <div className="mb-3">
         <h3 className="text-lg font-semibold text-blue-800 mb-1">
-          Oak's Card Recommendations
+          Oak&apos;s Card Recommendations
         </h3>
         <p className="text-blue-700 text-sm mb-2">{reason}</p>
         {strategy && (
-          <p className="text-blue-600 text-sm italic">💡 {strategy.replace(/'/g, '&apos;')}</p>
+          <p className="text-blue-600 text-sm italic">💡 {strategy}</p>
         )}
       </div>
       
@@ -63,14 +64,12 @@ export default function CardRecommendations({
             </div>
             
             <div className="flex justify-center mb-3">
-              <img 
+              <Image
                 src={getCardImageUrl(rec.image, 'high', 'webp')}
                 alt={rec.cardName}
+                width={80}
+                height={112}
                 className="w-full h-auto object-contain rounded shadow-sm"
-                onError={(e) => {
-                  console.log('Image failed to load:', rec.image);
-                  e.currentTarget.src = `https://via.placeholder.com/80x112/4F46E5/FFFFFF?text=${encodeURIComponent(rec.cardName.substring(0, 8))}`;
-                }}
               />
             </div>
             

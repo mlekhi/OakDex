@@ -4,6 +4,11 @@ import { streamText } from "ai";
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
+interface CardData {
+  name: string;
+  quantity: number;
+}
+
 export async function POST(req: Request) {
   try {
     const { messages, selectedCards } = await req.json();
@@ -11,11 +16,10 @@ export async function POST(req: Request) {
     // Create deck context using selected cards
     let deckContext = "";
     if (selectedCards && selectedCards.length > 0) {
-      const cardList = selectedCards.map((card: any) => 
+      const cardList = selectedCards.map((card: CardData) => 
         `${card.name} (${card.quantity}x)`
       ).join(', ');
-      
-      const totalCards = selectedCards.reduce((sum: number, card: any) => sum + card.quantity, 0);
+      const totalCards = selectedCards.reduce((sum: number, card: CardData) => sum + card.quantity, 0);
       deckContext = `\n\nCURRENT DECK INFORMATION:\nThe user's current deck contains ${totalCards}/20 cards:\n${cardList}\n\nWhen giving advice, consider these specific cards and suggest complementary cards or strategies that would work well with this deck composition in mind.`;
     }
 

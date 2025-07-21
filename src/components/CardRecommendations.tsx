@@ -44,13 +44,12 @@ export default function CardRecommendations({
         <h3 className="text-lg font-semibold text-blue-800 mb-1">
           Oak&apos;s Card Recommendations
         </h3>
-        <p className="text-blue-700 text-sm mb-2">{reason}</p>
         {strategy && (
           <p className="text-blue-600 text-sm italic">💡 {strategy}</p>
         )}
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {recommendations.map((rec, index) => (
           <div 
             key={`${rec.cardId}-${index}`} 

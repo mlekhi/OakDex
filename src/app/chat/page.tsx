@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import ChatInterface from "@/components/ChatInterface";
 import AvailableCards from "@/components/AvailableCards";
 import DeckBuilder from "@/components/DeckBuilder";
@@ -46,17 +47,57 @@ export default function Chat() {
     }
   };
 
+  const pageVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen">
+    <motion.div 
+      className="min-h-screen"
+      variants={pageVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <Header />
 
       {/* TODO: Add loading signal here when cards are being preloaded */}
       
       <div className="flex flex-col w-full max-w-6xl py-8 mx-auto px-6">
         {/* Deck builder section */}
-        <div className="flex-1 flex flex-col mb-8">
-          <h2 className="text-2xl font-bold mb-4">Deck Builder</h2>
-          <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <motion.div 
+          className="flex-1 flex flex-col mb-8"
+          variants={sectionVariants}
+        >
+          <motion.h2 
+            className="text-2xl font-bold mb-4"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Deck Builder
+          </motion.h2>
+          <motion.div 
+            className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6"
+            variants={sectionVariants}
+          >
             <AvailableCards
               availableCards={availableCards}
               isLoadingCards={isLoadingCards}
@@ -75,16 +116,23 @@ export default function Chat() {
               onDrop={handleDrop}
               onRemoveCard={handleRemoveCard}
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <ChatInterface 
-          selectedCards={selectedCards} 
-          onAddCard={handleAddRecommendedCard}
-        />
+        <motion.div
+          variants={sectionVariants}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <ChatInterface 
+            selectedCards={selectedCards} 
+            onAddCard={handleAddRecommendedCard}
+          />
+        </motion.div>
       </div>
 
       <Footer />
-    </div>
+    </motion.div>
   );
 }

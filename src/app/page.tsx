@@ -22,7 +22,7 @@ export default function LandingPage() {
               alt="Professor Oak" 
               width={64}
               height={64}
-              className="w-16 h-16 rounded-full mr-4"
+              className="w-16 h-16"
             />
             <h1 className="text-5xl md:text-7xl font-bold">
               OakDex

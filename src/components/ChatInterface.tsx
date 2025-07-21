@@ -146,7 +146,7 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
             />
             <button
               type="submit"
-              className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-md hover:shadow-lg transition-shadow flex items-center gap-2"
+              className="px-6 py-3 bg-white text-gray-700 rounded-full hover:bg-blue-400 hover:text-white shadow-md hover:shadow-lg transition-all flex items-center gap-2"
               disabled={!input.trim()}
             >
               <Send className="w-4 h-4" />

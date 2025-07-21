@@ -1,0 +1,29 @@
+name: Sync TCGdex Sets
+
+on:
+  schedule:
+    - cron: '0 23 * * 4'  # Thursday evenings
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run sync script
+        run: npm run populate-vectors
+        env:
+          PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        timeout-minutes: 30

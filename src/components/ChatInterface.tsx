@@ -104,7 +104,15 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
           <div key={message.id} className="whitespace-pre-wrap mb-4 p-3 rounded-lg shadow-lg bg-white">
             <div className="flex items-center gap-3 mb-1">
               {message.role === "user" ? (
-                <div className="font-semibold">You</div>
+                <>
+                  <Image 
+                    src="/pokeball-sprite.png" 
+                    alt="You" 
+                    width={32}
+                    height={32}
+                  />
+                  <div className="font-semibold">You</div>
+                </>
               ) : (
                 <>
                   <Image 

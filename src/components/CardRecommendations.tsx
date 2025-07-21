@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { CardRecommendation } from "../types/cardRecommendations";
-import { getCardImageUrl } from "../utils/cardUtils";
+import { CardRecommendation } from "@/types/cardRecommendations";
+import { getCardImageUrl } from "@/utils/cardUtils";
 
 interface CardRecommendationsProps {
   recommendations: CardRecommendation[];

@@ -8,6 +8,7 @@ import { Send } from "lucide-react";
 import CardRecommendations from "./CardRecommendations";
 import { useState, useEffect, useRef } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import ReactMarkdown from "react-markdown";
 
 interface ChatInterfaceProps {
   selectedCards: DeckCard[];
@@ -167,7 +168,11 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
                 {message.parts.map((part, i) => {
                   switch (part.type) {
                     case "text":
-                      return <div key={`${message.id}-${i}`}>{part.text}</div>;
+                      return (
+                        <div key={`${message.id}-${i}`} className="prose prose-sm max-w-none">
+                          <ReactMarkdown>{part.text}</ReactMarkdown>
+                        </div>
+                      );
                   }
                 })}
               </div>

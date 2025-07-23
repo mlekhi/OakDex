@@ -6,7 +6,8 @@ import { DeckCard } from "@/types/cards";
 import { CardRecommendation } from "@/types/cardRecommendations";
 import { Send } from "lucide-react";
 import CardRecommendations from "./CardRecommendations";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 interface ChatInterfaceProps {
   selectedCards: DeckCard[];
@@ -19,6 +20,8 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
     recommendations: CardRecommendation[];
     strategy?: string;
   } | null>(null);
+
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const handleRemoveRecommendation = (cardId: string) => {
     if (recommendations) {
@@ -46,7 +49,7 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
     quantity: card.quantity
   }));
 
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: '/api/chat',
     body: {
       selectedCards: minimalCardData,
@@ -79,6 +82,13 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
     }
   });
 
+  // Auto-scroll to bottom
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   const handleAddRecommendedCard = (cardId: string, cardName: string) => {
     if (onAddCard) {
       onAddCard(cardId, cardName);
@@ -104,7 +114,7 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
 
       <div className="flex flex-col w-full h-96">
         
-        <div className="flex-1 overflow-y-auto pr-2 pb-6">
+        <div className="flex-1 overflow-y-auto pr-2 pb-6" ref={chatContainerRef}>
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
               <div className="mb-4">
@@ -141,12 +151,16 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
                     </>
                   ) : (
                     <>
-                      <Image 
-                        src="/oak-sprite.png" 
-                        alt="Professor Oak" 
-                        width={32}
-                        height={32}
-                      />
+                      {(isLoading) ? (
+                        <LoadingSpinner size="lg" />
+                      ) : (
+                        <Image 
+                          src="/oak-sprite.png" 
+                          alt="Professor Oak" 
+                          width={32}
+                          height={32}
+                        />
+                      )}
                       <div className="font-semibold">Professor Oak</div>
                     </>
                   )}
@@ -173,9 +187,13 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
             <button
               type="submit"
               className="px-6 py-3 bg-white text-gray-700 rounded-full hover:bg-blue-400 hover:text-white shadow-md hover:shadow-lg transition-all flex items-center gap-2"
-              disabled={!input.trim()}
+              disabled={!input.trim() || isLoading}
             >
-              <Send className="w-4 h-4" />
+              {isLoading ? (
+                <LoadingSpinner size="sm" />
+              ) : (
+                <Send className="w-4 h-4" />
+              )}
             </button>
           </div>
         </form>

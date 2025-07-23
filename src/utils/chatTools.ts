@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { getCardContext, searchCards, getSimilarCards } from '@/utils/vectorStore';
+import { searchCards, getSimilarCards } from '@/utils/vectorStore';
 import { CardRecommendation } from '@/types/cardRecommendations';
 import { sanitizeSearchQuery, validateSearchQuery } from './validation';
 

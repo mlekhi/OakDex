@@ -8,7 +8,6 @@ import { X } from "lucide-react";
 
 interface CardRecommendationsProps {
   recommendations: CardRecommendation[];
-  reason: string;
   strategy?: string;
   onAddCard?: (cardId: string, cardName: string) => void;
   onRemoveRecommendation?: (cardId: string) => void;
@@ -31,7 +30,6 @@ const PriorityBadge = ({ priority }: { priority: string }) => {
 
 export default function CardRecommendations({ 
   recommendations, 
-  reason, 
   strategy, 
   onAddCard,
   onRemoveRecommendation,

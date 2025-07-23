@@ -103,7 +103,6 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
         <div className="mb-4">
           <CardRecommendations
             recommendations={recommendations.recommendations}
-            reason={recommendations.reason}
             strategy={recommendations.strategy}
             onAddCard={handleAddRecommendedCard}
             onRemoveRecommendation={handleRemoveRecommendation}
@@ -128,11 +127,11 @@ export default function ChatInterface({ selectedCards, onAddCard }: ChatInterfac
               </div>
               <h3 className="text-lg font-semibold mb-2 text-gray-700">Welcome to OakDex!</h3>
               <p className="text-sm mb-4 max-w-md">
-                I'm Professor Oak, your Pokémon TCG Pocket deck strategist. 
+                I&apos;m Professor Oak, your Pokémon TCG Pocket deck strategist. 
                 Build your deck above, then ask me anything!
               </p>
               <div className="text-xs text-gray-400 space-y-1">
-                <p>💡 Try asking: "How can I improve this deck?"</p>
+                <p>💡 Try asking: &ldquo;How can I improve this deck?&rdquo;</p>
               </div>
             </div>
           ) : (

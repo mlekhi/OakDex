@@ -96,7 +96,7 @@ export default function AvailableCards({
         ) : filteredCards.length === 0 ? (
           <div className="col-span-full text-center py-8 text-muted-foreground transition-opacity duration-300">
             {searchQuery ? (
-              <p>No cards found matching "{searchQuery}"</p>
+              <p>No cards found matching &ldquo;{searchQuery}&rdquo;</p>
             ) : (
               <p>No cards available. Try loading a different set.</p>
             )}
